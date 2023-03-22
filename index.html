@@ -1,0 +1,45 @@
+<style>
+    .editor {
+        display: flex;
+    }
+
+    .menu-panel {
+        display: flex;
+        background-color: orange;
+    }
+
+    .menu-panel button {
+        border: none;
+        padding: 5px;
+    }
+
+    #line-counter {
+        background-color: lightgray;
+        width: 2rem;
+        resize: none;
+        overflow-y: hidden;
+    }
+
+
+    #json-editor {
+        resize: none;
+        width: 100%;
+        outline: none;
+        height: 250px;
+    }
+</style>
+
+<div class="conteiner">
+    <div class="menu-panel">
+        <button onclick="novo()">Novo</button>
+        <button onclick="salvar()">Salvar</button>
+        <button >Desfazer</button>
+        <button >Refazer</button>
+    </div>
+    <div class="editor">
+        <textarea id="line-counter" rows="1" disabled>1</textarea>
+        <textarea id="json-editor" rows="1"></textarea>
+    </div>
+</div>
+
+<script src="main.js"></script>
