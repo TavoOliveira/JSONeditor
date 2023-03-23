@@ -1,16 +1,31 @@
+import Intellisense from './js/intellisense.js';
+
 const jsonEditor = document.getElementById("json-editor");
 const lineCounter = document.getElementById("line-counter");
+const interllisense = document.querySelector('.interllisense');
 
 const commands = {
-    menu: '{\n"id": 1,\n"texto": "Texto da mensagem"\n}'
+    menu: '{\n"id": 1,\n"texto": "Texto da mensagem"\n}',
+    criarmenu: ''
 }
 
-jsonEditor.addEventListener("input", () => {
+const inter = new Intellisense(commands);
+
+jsonEditor.addEventListener("input", (event) => {
+    inter.showOptions(event.target.value);
+    const cursorPosition = event.target.selectionStart;
+    const textareaRect = event.target.getBoundingClientRect();
+    interllisense.style.display = "block";
+    interllisense.style.left = `${cursorPosition * 10}px`;
     linhas();
 });
 
 jsonEditor.addEventListener("scroll", () => {
     lineCounter.scrollTop = jsonEditor.scrollTop;
+});
+
+jsonEditor.addEventListener('focusout', () => {
+    interllisense.style.display = "none";
 });
 
 function novo() {
@@ -32,4 +47,16 @@ function linhas() {
 
 function salvar() {
     console.log(JSON.parse(jsonEditor.textContent));
+}
+
+function getCursorPosition(textarea) {
+    const { selectionStart, selectionEnd } = textarea;
+    const { top, left } = textarea.getBoundingClientRect();
+    const lineHeight = parseInt(getComputedStyle(textarea).lineHeight, 10);
+    const height = (selectionEnd - selectionStart) * lineHeight;
+    return {
+        top: top + lineHeight * Math.floor(selectionEnd / textarea.cols),
+        left: left + (selectionEnd % textarea.cols) * parseFloat(getComputedStyle(textarea).fontSize),
+        height: height
+    }
 }

@@ -1,6 +1,7 @@
 <style>
     .editor {
         display: flex;
+        position: relative;
     }
 
     .menu-panel {
@@ -13,6 +14,16 @@
         padding: 5px;
     }
 
+    .interllisense {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: red;
+        width: 100px;
+        height: 50;
+    }
+    
     #line-counter {
         background-color: lightgray;
         width: 2rem;
@@ -38,8 +49,11 @@
     </div>
     <div class="editor">
         <textarea id="line-counter" rows="1" disabled>1</textarea>
-        <textarea id="json-editor" rows="1"></textarea>
+        <div style="position: relative; width: 100%;">
+            <textarea id="json-editor" rows="1"></textarea>
+            <div class="interllisense"></div>
+        </div>
     </div>
 </div>
 
-<script src="main.js"></script>
+<script type="module" src="main.js"></script>
