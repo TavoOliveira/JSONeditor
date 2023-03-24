@@ -12,11 +12,7 @@ const commands = {
 const inter = new Intellisense(commands);
 
 jsonEditor.addEventListener("input", (event) => {
-    inter.showOptions(event.target.value);
-    const cursorPosition = event.target.selectionStart;
-    const textareaRect = event.target.getBoundingClientRect();
-    interllisense.style.display = "block";
-    interllisense.style.left = `${cursorPosition * 10}px`;
+    inter.showOptions(event.target.value);  
     linhas();
 });
 
