@@ -12,7 +12,9 @@ const commands = {
 const inter = new Intellisense(commands);
 
 jsonEditor.addEventListener("input", (event) => {
-    inter.showOptions(event.target.value);  
+    inter.showOptions(event.target.value);
+    interllisense.style.display = "block";
+    moverInter();
     linhas();
 });
 
@@ -55,4 +57,8 @@ function getCursorPosition(textarea) {
         left: left + (selectionEnd % textarea.cols) * parseFloat(getComputedStyle(textarea).fontSize),
         height: height
     }
+}
+
+function moverInter() {
+  console.log(jsonEditor.cols)
 }
